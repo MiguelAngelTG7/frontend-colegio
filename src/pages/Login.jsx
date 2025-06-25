@@ -9,13 +9,19 @@ export default function Login() {
 
   const handleLogin = async () => {
     setError("");
+    console.log("📤 Enviando login con:", { username, password }); // 👈
+
     try {
       const response = await fetch("https://backend-colegio-suxn.onrender.com/api/login/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({ username, password }),
       });
+
       const data = await response.json();
+      console.log("📥 Respuesta del backend:", data); // 👈
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
@@ -26,10 +32,13 @@ export default function Login() {
       } else {
         setError(data.error || "Credenciales incorrectas");
       }
+
     } catch (err) {
+      console.error("❌ Error de conexión:", err); // 👈
       setError("Error de conexión");
     }
   };
+
 
   return (
     <div className="d-flex vh-100 justify-content-center align-items-center bg-light">

@@ -13,7 +13,7 @@ export default function DashboardPadre() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/dashboard-padre/", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/dashboard-padre/`, {
       headers: {
         Authorization: "Bearer " + token,
       },

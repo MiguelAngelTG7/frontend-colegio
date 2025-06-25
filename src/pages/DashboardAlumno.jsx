@@ -13,7 +13,7 @@ export default function DashboardAlumno() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/dashboard-alumno/", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/dashboard-alumno/`, {
       headers: {
         Authorization: "Bearer " + token,
       },

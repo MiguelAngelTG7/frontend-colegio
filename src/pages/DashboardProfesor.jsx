@@ -9,7 +9,7 @@ export default function DashboardProfesor() {
   // Función para obtener datos actualizados
   const fetchData = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/dashboard/", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dashboard/`, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -66,7 +66,7 @@ export default function DashboardProfesor() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/api/registrar-nota/", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/registrar-nota/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

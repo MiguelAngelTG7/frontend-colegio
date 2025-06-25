@@ -35,12 +35,19 @@ export default function DashboardAlumno() {
 
       <h4 className="mb-3">Tus cursos y notas:</h4>
       <ul className="list-group">
-        {notas.notas.map((curso, i) => (
-          <li key={i} className="list-group-item">
-            <strong>{curso.curso}</strong>: {curso.notas.join(", ")} —{" "}
-            <span className="fw-semibold">Promedio:</span> {curso.promedio}
-          </li>
-        ))}
+        {notas.notas.map((curso, i) => {
+          const promedio = Number(curso.promedio);
+          const estado = promedio >= 10.5 ? "Aprobado" : "Desaprobado";
+          const color = promedio >= 10.5 ? "text-success" : "text-danger";
+
+          return (
+            <li key={i} className="list-group-item">
+              <strong>{curso.curso}</strong>: {curso.notas.join(", ")} —{" "}
+              <span className="fw-semibold">Promedio:</span> {promedio}{" "}
+              <span className={`ms-2 fw-bold ${color}`}>{estado}</span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

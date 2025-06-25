@@ -37,12 +37,19 @@ export default function DashboardPadre() {
         <div key={i} className="mb-4">
           <h4 className="text-primary">{hijo.alumno}</h4>
           <ul className="list-group mb-3">
-            {hijo.notas.map((n, j) => (
-              <li key={j} className="list-group-item">
-                {n.curso}: {n.notas.join(", ")} —{" "}
-                <span className="fw-semibold">Promedio:</span> {n.promedio}
-              </li>
-            ))}
+            {hijo.notas.map((n, j) => {
+              const promedio = Number(n.promedio);
+              const estado = promedio >= 10.5 ? "Aprobado" : "Desaprobado";
+              const color = promedio >= 10.5 ? "text-success" : "text-danger";
+
+              return (
+                <li key={j} className="list-group-item">
+                  {n.curso}: {n.notas.join(", ")} —{" "}
+                  <span className="fw-semibold">Promedio:</span> {promedio}{" "}
+                  <span className={`ms-2 fw-bold ${color}`}>{estado}</span>
+                </li>
+              );
+            })}
           </ul>
           <hr />
         </div>
